@@ -1,0 +1,25 @@
+//
+// Prefix header for all source files of the 'medical-day-planner' target in the 'medical-day-planner' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+
+#ifdef __IPHONE_6_0
+# define ALIGN_CENTER NSTextAlignmentCenter
+#else
+# define ALIGN_CENTER UITextAlignmentCenter
+#endif
+
+#ifdef __OBJC__
+  #import <UIKit/UIKit.h>
+  #import <Foundation/Foundation.h>
+  #import <CoreData/CoreData.h>
+  #import "NSManagedObject+toDictionary.h"
+  #import "NSDictionary+ObjectForKeyOrEmpty.h"
+  #import "NSArray+Enumurable.h"
+#endif

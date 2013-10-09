@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12C54" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Appointment" representedClassName="Appointment" syncable="YES">
+        <attribute name="caregiver" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="nextDateTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="physician" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="purpose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="results" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="appointments" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="Directive" representedClassName="Directive">
+        <attribute name="attorney" optional="YES" attributeType="String">
+            <userInfo/>
+        </attribute>
+        <attribute name="attorneyPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dni" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="dnr" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="dpoa" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="dpoaName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dpoaPhoneCell" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dpoaPhoneHome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dpoaPhoneWork" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dpoaRelationship" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="livingWill" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="trust" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="directive" inverseEntity="Patient" syncable="YES"/>
+        <userInfo/>
+    </entity>
+    <entity name="Hospitalization" representedClassName="Hospitalization" syncable="YES">
+        <attribute name="admitDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="admitPhysician" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dischargeDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="facility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="outcome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="symptoms" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="hospitalizations" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="Medication" representedClassName="Medication" syncable="YES">
+        <attribute name="actualAlarmDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="alarmTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dc" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dosage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="frequency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="generic" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pharmacy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prescriptionNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="prescriptionPhysician" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="purpose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sideEffects" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="medications" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MedicationPhoto" inverseName="medication" inverseEntity="MedicationPhoto" syncable="YES"/>
+    </entity>
+    <entity name="MedicationPhoto" representedClassName="MedicationPhoto" syncable="YES">
+        <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="medication" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Medication" inverseName="photos" inverseEntity="Medication" syncable="YES"/>
+    </entity>
+    <entity name="Patient" representedClassName="Patient" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bloodType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="diagnosis" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dietaryRestrictions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dobDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="knownAllergies" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="Patient Name" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneCell" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneHome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneWork" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="appointments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Appointment" inverseName="patient" inverseEntity="Appointment" syncable="YES"/>
+        <relationship name="directive" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Directive" inverseName="patient" inverseEntity="Directive" syncable="YES"/>
+        <relationship name="hospitalizations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Hospitalization" inverseName="patient" inverseEntity="Hospitalization" syncable="YES"/>
+        <relationship name="medications" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Medication" inverseName="patient" inverseEntity="Medication" syncable="YES"/>
+        <relationship name="phonebookContacts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PhoneBookContact" inverseName="patient" inverseEntity="PhoneBookContact" syncable="YES"/>
+        <relationship name="procedures" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Procedure" inverseName="patient" inverseEntity="Procedure" syncable="YES"/>
+        <relationship name="simpleContacts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SimpleContact" inverseName="patient" inverseEntity="SimpleContact" syncable="YES"/>
+        <relationship name="tests" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Test" inverseName="patient" inverseEntity="Test" syncable="YES"/>
+        <relationship name="treatments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Treatment" inverseName="patient" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="PhoneBookContact" representedClassName="PhoneBookContact" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contactPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fax" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="Contact Name" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quickContact" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="specialty" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="phonebookContacts" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="Procedure" representedClassName="Procedure" syncable="YES">
+        <attribute name="complications" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="facility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="physician" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="procedureText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="results" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suggestions" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="procedures" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="SimpleContact" representedClassName="SimpleContact" syncable="YES">
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneCell" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneHome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneWork" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="policyNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="simpleContacts" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="Test" representedClassName="Test" syncable="YES">
+        <attribute name="bodyRegion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="performedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="physician" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="results" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="tests" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TestPhoto" inverseName="test" inverseEntity="TestPhoto" syncable="YES"/>
+    </entity>
+    <entity name="TestPhoto" representedClassName="TestPhoto" syncable="YES">
+        <attribute name="filename" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="test" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Test" inverseName="photos" inverseEntity="Test" syncable="YES"/>
+    </entity>
+    <entity name="Treatment" representedClassName="Treatment" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="facility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="physician" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sideEffects" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="treatmentText" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="treatments" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Appointment" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Directive" positionX="0" positionY="0" width="128" height="240"/>
+        <element name="Hospitalization" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Medication" positionX="0" positionY="0" width="128" height="300"/>
+        <element name="MedicationPhoto" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Patient" positionX="0" positionY="0" width="128" height="375"/>
+        <element name="PhoneBookContact" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="Procedure" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="SimpleContact" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Test" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="TestPhoto" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Treatment" positionX="0" positionY="0" width="128" height="150"/>
+    </elements>
+</model>
